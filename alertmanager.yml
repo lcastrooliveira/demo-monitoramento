@@ -1,0 +1,11 @@
+templates:
+- '/etc/alertmanager/template/*.tmpl'
+route:
+  repeat_interval: 1h
+  receiver: devops-team
+receivers:
+- name: 'devops-team'
+  slack_configs:
+  - api_url: https://hooks.slack.com/services/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
+    channel: '#devops-demo'
+    send_resolved: true

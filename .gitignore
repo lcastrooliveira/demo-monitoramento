@@ -1,0 +1,4 @@
+.env
+data/
+grafana_data/plugins
+grafana_data/sessions
