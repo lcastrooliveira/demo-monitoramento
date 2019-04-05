@@ -26,19 +26,6 @@ services:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
       - ./alert.rules.yml:/etc/prometheus/alert.rules.yml:ro
   
-  grafana:
-    image: grafana/grafana:5.2.2
-    network_mode: host
-    user: 1000:1000
-    depends_on: 
-      - prometheus
-    environment:
-      - GF_SECURITY_ADMIN_PASSWORD
-    ports:
-      - 3000:3000
-    volumes:
-      - ./grafana_data:/var/lib/grafana
-  
   cAdvisor:
     image: google/cadvisor:v0.33.0
     network_mode: host
@@ -62,6 +49,19 @@ services:
     command: --config.file /etc/alertmanager/alertmanager.yml
     volumes:
       - ./alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
+
+  grafana:
+    image: grafana/grafana:5.2.2
+    network_mode: host
+    user: 1000:1000
+    depends_on: 
+      - prometheus
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD
+    ports:
+      - 3000:3000
+    volumes:
+      - ./grafana_data:/var/lib/grafana
 
 
 
